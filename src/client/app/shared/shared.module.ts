@@ -1,11 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { NameListService } from './name-list/name-list.service';
+import { TimeTurnerService } from '../time-turner/time-turner.service';
+import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
+import { LockService } from '../lock/lock.service';
+import { FilterLogs } from './../pipes/data-pipes';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -13,15 +12,14 @@ import { NameListService } from './name-list/name-list.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [ToolbarComponent, NavbarComponent],
-  exports: [ToolbarComponent, NavbarComponent,
-    CommonModule, FormsModule, RouterModule]
+  declarations: [FilterLogs],
+  exports: [CommonModule, RouterModule, FilterLogs],
+  providers: [TimeTurnerService, TreeRegistrarService, LockService]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [NameListService]
     };
   }
 }

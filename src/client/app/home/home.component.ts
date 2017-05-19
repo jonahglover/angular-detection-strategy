@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { TreeComponent, Tree } from './../tree/tree.component';
+import { ControlsComponent } from './../controls/controls.component';
+import { TimeTurnerService } from '../time-turner/time-turner.service';
+import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -9,48 +12,24 @@ import { NameListService } from '../shared/name-list/name-list.service';
   selector: 'sd-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
+  providers: [
+    TimeTurnerService,
+    TreeRegistrarService
+  ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
+  constructor(
+    public timeTurnerService: TimeTurnerService
+  ){}
 
-  newName: string = '';
-  errorMessage: string;
-  names: any[] = [];
+  color: String = 'red';
 
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
-  constructor(public nameListService: NameListService) {}
+  rootTree: Tree = {
+    children: [],
+  };
 
-  /**
-   * Get the names OnInit
-   */
-  ngOnInit() {
-    this.getNames();
+  getHistory() {
+    debugger;
+    return this.timeTurnerService.logger || [];
   }
-
-  /**
-   * Handle the nameListService observable
-   */
-  getNames() {
-    this.nameListService.get()
-      .subscribe(
-        names => this.names = names,
-        error => this.errorMessage = <any>error
-      );
-  }
-
-  /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
-   */
-  addName(): boolean {
-    // TODO: implement nameListService.post
-    this.names.push(this.newName);
-    this.newName = '';
-    return false;
-  }
-
 }

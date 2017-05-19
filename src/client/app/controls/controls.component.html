@@ -1,0 +1,64 @@
+<div class="controls-container">
+    <div class="control-box">
+        <div class="data-container">
+            <div class="history-container">
+                <ul class="history-list">
+                    <li class="event-item" *ngFor="let log of logs; let i = index; trackBy: logTrack" (click)="setStep(i)">
+                        <span class="tree-id item-hover" [ngClass]="{ 'text--green': i == getCurrentStep() }">Step {{i}} @ Node {{log.nodeId}} </span>: <span class="event item-hover">{{ getEventName(log.event) }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="history-container">
+                <pre>{{ getCurrentLog().message | json }}</pre>
+            </div>
+        </div>
+        <div class="btn-container">
+            <div class="float-left">
+                <button class="btn-ctrl fa fa-circle" aria-hidden="true" [ngClass]="{ 'text--red': isRecording() }" [disabled]="!isPaused()" (click)="record()"><i ></i></button>
+                <button class="btn-ctrl fa fa-backward" [disabled]="isPaused()" (click)="stepBackward()"></button>
+                <button class="btn-ctrl fa fa-play" *ngIf="isPaused() && !isRecording()"  (click)="play()"></button>
+                <button class="btn-ctrl fa fa-stop" *ngIf="!isPaused()" (click)="pause()"></button>
+                <button class="btn-ctrl fa fa-stop" *ngIf="isRecording()" (click)="stopRecording()"></button>
+                <button class="btn-ctrl fa fa-forward" [disabled]="isPaused()" (click)="stepForward()"></button>
+                <span>Current Step: {{getCurrentStep()}}</span>
+            </div>
+            <div class="float-right">
+                <button class="btn-ctrl right-border--false fa fa-trash-o" [disabled]="isRecording()" (click)="clearLogs()"></button>
+            </div>
+        </div>      
+    </div>
+    <div class="log-options-container">
+        <div class="option-column">
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngOnChanges)">
+                <div class="option-colour background-ngOnChanges" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngOnChanges] }">></div>OnChanges
+            </div>
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngOnInit)">
+                <div class="option-colour background-ngOnInit" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngOnInit] }">></div>OnInit
+            </div>
+        </div>
+        <div class="option-column">
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngDoCheck)">
+                <div class="option-colour background-ngDoCheck" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngDoCheck] }">></div>DoCheck
+            </div>
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngAfterContentInit)">
+                <div class="option-colour background-ngAfterContentInit" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngAfterContentInit] }">></div>AfterContentInit
+            </div>
+        </div>
+        <div class="option-column">
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngAfterContentChecked)">
+                <div class="option-colour background-ngAfterContentChecked" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngAfterContentChecked] }">></div>AfterContentChecked
+            </div>
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngAfterViewInit)">
+                <div class="option-colour background-ngAfterViewInit" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngAfterViewInit] }">></div>AfterViewInit
+            </div>
+        </div>
+        <div class="option-column">
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngAfterViewChecked)">
+                <div class="option-colour background-ngAfterViewChecked" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngAfterViewChecked] }">></div>AfterViewChecked
+            </div>
+            <div class="log-option" (click)="toggleLogOption(logEvent.ngOnDestroy)">
+                <div class="option-colour background-ngOnDestroy" [ngClass]="{ 'option--disabled': !controlState.logFilters[logEvent.ngOnDestroy] }">></div>OnDestroy
+            </div>
+        </div>
+    </div>  
+</div>

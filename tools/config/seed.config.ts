@@ -144,7 +144,7 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'Welcome to angular-seed!';
+  APP_TITLE = 'Angular Change Detection Strategy Test';
 
   /**
    * Tracking ID.
@@ -402,10 +402,11 @@ export class SeedConfig {
       'app/*': '/app/*',
       // For test config
       'dist/dev/*': '/base/dist/dev/*',
-      '*': 'node_modules/*'
+      '*': 'node_modules/*',
+      lodash: './node_modules/lodash/lodash.js'
     },
     packages: {
-    }
+    }    
   };
 
   /**

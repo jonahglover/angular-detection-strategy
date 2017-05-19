@@ -1,0 +1,19 @@
+<ul class="tree-list">
+    <li class="tree-item">
+        <a class="name" href="#">
+            <div>
+                <span class="tree-title">{{id}}</span>    
+            </div>
+            <div>
+                <button (click)="addChild()">+</button>
+                <button (click)="removeChild()">-</button>
+                <button  class="button-color" (click)="changeButtonColor()" [ngStyle]="{'background-color': color}">{{color}}</button>
+            </div>
+        </a>
+        <ul *ngIf="tree.children.length > 0" class="tree-list">
+            <li *ngFor="let child of tree.children" class="tree-item">
+                <big-tree [tree]="child" [parentColor]="color"> </big-tree>
+            </li>
+        </ul>
+    </li>
+</ul>
