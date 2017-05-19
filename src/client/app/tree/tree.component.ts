@@ -23,15 +23,9 @@ export class TreeComponent implements OnChanges {
   @Input() public tree: Tree;
   @Input() public parentOptions: Options;
 
-  ref: ChangeDetectorRef;
-
   options: Options = {
     color: ''
   };
-
-  constructor(ref: ChangeDetectorRef) {
-    this.ref = ref;
-  }
 
   addChild() {
     const child: Tree = {
@@ -45,16 +39,11 @@ export class TreeComponent implements OnChanges {
   }
 
   changeColor() {
-   const newColor =  prompt('Enter a new color');
-    this.options = {
-      color: newColor
-    };
+    this.options.color = prompt('Enter a new color');
   }
 
   ngOnChanges() {
-    this.options = {
-      color: this.parentOptions.color;
-    };
+    this.options.color = this.parentOptions.color;
   }
 
 }
