@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeComponent, Tree } from './../tree/tree.component';
+import { TreeComponent, Tree, Options} from './../tree/tree.component';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -11,7 +11,9 @@ import { TreeComponent, Tree } from './../tree/tree.component';
 })
 export class HomeComponent {
 
-  color: string =  'green';
+  baseOptions: Options = {
+    color: 'green'
+  };
 
   rootTree: Tree = {
     children: [],

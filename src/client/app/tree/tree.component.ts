@@ -9,19 +9,25 @@ export interface Tree {
   children: Tree[];
 }
 
+export interface Options {
+  color: string;
+}
+
 @Component({
   moduleId: module.id,
   selector: 'big-tree',
   styleUrls: ['tree.component.css'],
   templateUrl: 'tree.component.html',
 })
-export class TreeComponent implements OnChanges, DoCheck, OnInit {
+export class TreeComponent implements OnChanges {
   @Input() public tree: Tree;
-  @Input() public parentColor: string;
+  @Input() public parentOptions: Options;
 
-  color: string = '';
   ref: ChangeDetectorRef;
 
+  options: Options = {
+    color: ''
+  };
 
   constructor(ref: ChangeDetectorRef) {
     this.ref = ref;
@@ -39,19 +45,16 @@ export class TreeComponent implements OnChanges, DoCheck, OnInit {
   }
 
   changeColor() {
-    this.color = prompt('Enter a new color');
-    this.ref.markForCheck();
-  }
-
-  ngOnInit() {
-    this.color = this.parentColor;
+   const newColor =  prompt('Enter a new color');
+    this.options = {
+      color: newColor
+    };
   }
 
   ngOnChanges() {
-    this.color = this.parentColor;
-  }
-  ngDoCheck() {
-    console.log('do check');
+    this.options = {
+      color: this.parentOptions.color;
+    };
   }
 
 }
