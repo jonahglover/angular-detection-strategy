@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TreeComponent, Tree, Options } from './../tree/tree.component';
 
 /**
@@ -8,7 +8,8 @@ import { TreeComponent, Tree, Options } from './../tree/tree.component';
   moduleId: module.id,
   selector: 'sd-home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css']
+  styleUrls: ['home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
 

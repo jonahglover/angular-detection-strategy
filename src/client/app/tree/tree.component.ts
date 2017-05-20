@@ -17,7 +17,8 @@ export interface Options {
   moduleId: module.id,
   selector: 'big-tree',
   styleUrls: ['tree.component.css'],
-  templateUrl: 'tree.component.html'
+  templateUrl: 'tree.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent implements OnChanges {
   @Input() public tree: Tree;
