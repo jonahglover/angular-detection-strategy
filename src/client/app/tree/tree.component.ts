@@ -1,5 +1,5 @@
-import { Component, Injectable, Input, ChangeDetectorRef } from '@angular/core';
-import { DoCheck, OnChanges, OnInit } from '@angular/core';
+import { Component, Injectable, Input, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 /**
  * From https://codepen.io/philippkuehn/pen/QbrOaN
  * This class represents the lazy loaded HomeComponent.
@@ -17,7 +17,7 @@ export interface Options {
   moduleId: module.id,
   selector: 'big-tree',
   styleUrls: ['tree.component.css'],
-  templateUrl: 'tree.component.html',
+  templateUrl: 'tree.component.html'
 })
 export class TreeComponent implements OnChanges {
   @Input() public tree: Tree;
@@ -26,6 +26,12 @@ export class TreeComponent implements OnChanges {
   options: Options = {
     color: ''
   };
+
+  ref: ChangeDetectorRef;
+
+  constructor(ref: ChangeDetectorRef) {
+    this.ref = ref;
+  }
 
   addChild() {
     const child: Tree = {
@@ -39,11 +45,11 @@ export class TreeComponent implements OnChanges {
   }
 
   changeColor() {
-    this.options.color = prompt('Enter a new color');
+    this.parentOptions.color = prompt('Enter a new color');
+    this.ref.markForCheck();
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.options.color = this.parentOptions.color;
   }
-
 }
