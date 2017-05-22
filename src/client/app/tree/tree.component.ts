@@ -44,7 +44,7 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
 
     // IGNORE FOLLOWING
     if(this.id !== null) {
-      this.timeTurnerService.log(this.id, LogEvent.ngOnChanges);
+      this.timeTurnerService.log(this.id, LogEvent.ngOnChanges, changes);
     }
   }
 
