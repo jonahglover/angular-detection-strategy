@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeComponent, Tree} from './../tree/tree.component';
+import { TreeComponent,Tree } from './../tree/tree.component';
 import { ControlsComponent } from './../controls/controls.component';
 import { TimeTurnerService } from '../time-turner/time-turner.service';
 import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
@@ -18,16 +18,17 @@ import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
   ]
 })
 export class HomeComponent {
-  constructor(
-    public timeTurnerService: TimeTurnerService
-  ){}
-
-  color: String = 'red';
-
-  rootTree: Tree = {
+  public rootTree: Tree = {
     children: [],
   };
 
+  /** nothing above this line is important */
+  public treeColor: String = 'red';
+  /** nothing below this line is important */
+
+  constructor(
+    public timeTurnerService: TimeTurnerService
+  ) {}
   getHistory() {
     return this.timeTurnerService.logger || [];
   }

@@ -12,9 +12,8 @@ import { FilterLogs } from './../pipes/data-pipes';
   templateUrl: 'controls.component.html'
 })
 export class ControlsComponent {
-  @Input() private logger: Log[] = [];
 
-  controlState = {
+  public controlState = {
     paused: true,
     currentStep: 0,
     recording: false,
@@ -33,6 +32,7 @@ export class ControlsComponent {
   public logEvent = LogEvent;
   public logs: Log[] = [];
 
+  @Input() private logger: Log[] = [];
   private logFilter = new FilterLogs();
 
   constructor(
