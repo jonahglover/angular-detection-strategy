@@ -8,6 +8,10 @@ export interface Tree {
   children: Tree[];
 }
 
+export interface Options {
+  color: String;
+}
+
 @Component({
   moduleId: module.id,
   selector: 'big-tree',
@@ -17,9 +21,11 @@ export interface Tree {
 export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() public tree: Tree;
-  @Input() public parentColor: String;
+  @Input() public options: Options;
 
-  color: String;
+  treeOptions: Options = {
+    color: null
+  };
   id: number = null;
 
   /* nothing in the constructor is helpful for this demo*/
@@ -27,11 +33,13 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
     private timeTurnerService: TimeTurnerService,
     private treeRegistrarService: TreeRegistrarService,
     private elementRef: ElementRef,
-  ) {}
+  ) { }
 
 
   ngOnChanges() {
-    this.color = this.parentColor;
+    this.treeOptions = {
+      color: this.options.color
+    };
 
     // IGNORE FOLLOWING
     if(this.id !== null) {
@@ -84,7 +92,9 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
   }
 
   changeButtonColor() {
-    this.color = prompt('Enter a new color');
+    this.treeOptions = {
+      color: prompt('Enter a new color')
+    };
   }
 
   getElementRef() {
