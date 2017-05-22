@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, ElementRef } from '@angular/core';
+import { Component, Injectable, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked } from '@angular/core';
 import { TimeTurnerService, LogEvent } from '../time-turner/time-turner.service';
@@ -11,6 +11,7 @@ export interface Tree {
 @Component({
   moduleId: module.id,
   selector: 'big-tree',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['tree.component.css'],
   templateUrl: 'tree.component.html',
 })
