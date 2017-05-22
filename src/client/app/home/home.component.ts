@@ -18,6 +18,7 @@ import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
   ]
 })
 export class HomeComponent {
+
   public rootTree: Tree = {
     children: [],
   };

@@ -48,10 +48,6 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
 
   /** Look above this guy */
 
-
-
-
-
   /**** CODE BELOW THIS LINE IS NOT IMPORTANT FOR THE DEMO !!!!!! */
 
   ngOnInit():void {
