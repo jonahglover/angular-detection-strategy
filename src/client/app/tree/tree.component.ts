@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, ElementRef } from '@angular/core';
+import { Component, Injectable, Input, ElementRef, SimpleChanges } from '@angular/core';
 import { AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked } from '@angular/core';
 import { TimeTurnerService, LogEvent } from '../time-turner/time-turner.service';
@@ -26,6 +26,7 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
   treeOptions: Options = {
     color: null
   };
+  
   id: number = null;
 
   /* nothing in the constructor is helpful for this demo*/
@@ -36,7 +37,7 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
   ) { }
 
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.treeOptions = {
       color: this.options.color
     };

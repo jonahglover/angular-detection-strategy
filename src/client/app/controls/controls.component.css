@@ -13,11 +13,17 @@
   max-height: 300px;
 }
 
+.data-container {
+  border-bottom: 2px solid black;
+  display: flex;
+}
+
 .history-container {
+  padding: 4px;
+  flex: 1;
   overflow: scroll;
   height: auto;
   max-height: 200px;
-  border-bottom: 2px solid black;
 }
 
 .history-list {

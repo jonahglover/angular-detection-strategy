@@ -1,11 +1,16 @@
 <div class="controls-container">
     <div class="control-box">
-        <div class="history-container">
-            <ul class="history-list">
-                <li class="event-item" *ngFor="let log of logs; let i = index; trackBy: logTrack" (click)="setStep(i)">
-                    <span class="tree-id item-hover" [ngClass]="{ 'text--green': i == getCurrentStep() }">Step {{i}} @ Node {{log.nodeId}} </span>: <span class="event item-hover">{{ getEventName(log.event) }}</span>
-                </li>
-            </ul>
+        <div class="data-container">
+            <div class="history-container">
+                <ul class="history-list">
+                    <li class="event-item" *ngFor="let log of logs; let i = index; trackBy: logTrack" (click)="setStep(i)">
+                        <span class="tree-id item-hover" [ngClass]="{ 'text--green': i == getCurrentStep() }">Step {{i}} @ Node {{log.nodeId}} </span>: <span class="event item-hover">{{ getEventName(log.event) }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="history-container">
+                <pre>{{ getCurrentLog().message | json }}</pre>
+            </div>
         </div>
         <div class="btn-container">
             <div class="float-left">

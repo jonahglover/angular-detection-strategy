@@ -135,6 +135,15 @@ export class ControlsComponent {
     this.controlState.logFilters[logEvent] = !this.controlState.logFilters[logEvent];
   }
 
+  getCurrentLog() {
+    const step = this.getCurrentStep();
+    const log = this.logs[step];
+    if(log) {
+      return this.timeTurnerService.getLogFromId(this.logs[step].id);
+    } else {
+      return {};
+    }
+  }
 
   /*
   * changes the color of a node to reflect that point in history

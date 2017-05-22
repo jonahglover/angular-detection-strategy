@@ -7,6 +7,7 @@ export interface Log {
   event: LogEvent;
   nodeId: number;
   id: number;
+  message: any;
 }
 
 export enum LogEvent {
@@ -37,13 +38,14 @@ export class TimeTurnerService {
 
   }
 
-  log(nodeId: number, event: LogEvent):void {
+  log(nodeId: number, event: LogEvent, message: any = {}):void {
     const id = this.logger.length;
     if(!this.lockService.isLocked()) {
       this.logger.push({
         event,
         nodeId,
-        id
+        id,
+        message
       });
     }
     this.logger = [].concat(this.logger);
