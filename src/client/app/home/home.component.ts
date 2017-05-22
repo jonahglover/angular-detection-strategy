@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import { TreeComponent, Tree, Options} from './../tree/tree.component';
 import { ControlsComponent } from './../controls/controls.component';
 import { TimeTurnerService } from '../time-turner/time-turner.service';
@@ -11,6 +11,7 @@ import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
   moduleId: module.id,
   selector: 'sd-home',
   templateUrl: 'home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['home.component.css'],
   providers: [
     TimeTurnerService,
