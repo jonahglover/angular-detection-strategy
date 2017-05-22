@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, ElementRef } from '@angular/core';
+import { Component, Injectable, Input, ElementRef, SimpleChanges } from '@angular/core';
 import { AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked } from '@angular/core';
 import { TimeTurnerService, LogEvent } from '../time-turner/time-turner.service';
@@ -6,10 +6,6 @@ import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
 
 export interface Tree {
   children: Tree[];
-}
-
-export interface Options {
-  color: String;
 }
 
 @Component({
@@ -21,11 +17,9 @@ export interface Options {
 export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() public tree: Tree;
-  @Input() public options: Options;
+  @Input() public parentColor: String;
 
-  treeOptions: Options = {
-    color: null
-  };
+  color: String;
   id: number = null;
 
   /* nothing in the constructor is helpful for this demo*/
@@ -33,17 +27,15 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
     private timeTurnerService: TimeTurnerService,
     private treeRegistrarService: TreeRegistrarService,
     private elementRef: ElementRef,
-  ) { }
+  ) {}
 
 
-  ngOnChanges() {
-    this.treeOptions = {
-      color: this.options.color
-    };
+  ngOnChanges(changes: SimpleChanges) {
+    this.color = this.parentColor;
 
     // IGNORE FOLLOWING
     if(this.id !== null) {
-      this.timeTurnerService.log(this.id, LogEvent.ngOnChanges);
+      this.timeTurnerService.log(this.id, LogEvent.ngOnChanges, changes);
     }
   }
 
@@ -92,9 +84,7 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
   }
 
   changeButtonColor() {
-    this.treeOptions = {
-      color: prompt('Enter a new color')
-    };
+    this.color = prompt('Enter a new color');
   }
 
   getElementRef() {

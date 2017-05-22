@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeComponent, Tree, Options} from './../tree/tree.component';
+import { TreeComponent, Tree} from './../tree/tree.component';
 import { ControlsComponent } from './../controls/controls.component';
 import { TimeTurnerService } from '../time-turner/time-turner.service';
 import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
@@ -22,9 +22,7 @@ export class HomeComponent {
     public timeTurnerService: TimeTurnerService
   ){}
 
-  public options: Options = { 
-   color: 'red'
-  }
+  color: String = 'red';
 
   rootTree: Tree = {
     children: [],
