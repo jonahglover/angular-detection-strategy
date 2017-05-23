@@ -7,12 +7,12 @@
             <div>
                 <button (click)="addChild()">+</button>
                 <button (click)="removeChild()">-</button>
-                <button  class="button-color" (click)="changeButtonColor()" [ngStyle]="{'background-color': treeColor}">{{treeColor}}</button>
+                <button  class="button-color" (click)="changeButtonColor()" [ngStyle]="{'background-color': treeOptions.color}">{{treeOptions.color}}</button>
             </div>
         </a>
         <ul *ngIf="tree.children.length > 0" class="tree-list">
             <li *ngFor="let child of tree.children" class="tree-item">
-                <big-tree [tree]="child" [parentTreeColor]="treeColor"> </big-tree>
+                <big-tree [tree]="child" [parentTreeOptions]="treeOptions"> </big-tree>
             </li>
         </ul>
     </li>

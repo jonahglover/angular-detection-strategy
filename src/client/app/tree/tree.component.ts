@@ -8,6 +8,10 @@ export interface Tree {
   children: Tree[];
 }
 
+export interface TreeOptions {
+  color: string;
+}
+
 @Component({
   moduleId: module.id,
   selector: 'big-tree',
@@ -17,10 +21,11 @@ export interface Tree {
 export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() public tree: Tree;
-  @Input() public parentTreeColor: String;
+  @Input() public parentTreeOptions: TreeOptions;
 
-
-  treeColor: String;
+  treeOptions: TreeOptions = {
+    color: null
+  };
 
   // unforunate hack so that I can save ngOnChanges logs;
   bufferedLogs: Log[] = [];
@@ -35,11 +40,11 @@ export class TreeComponent implements OnChanges, OnInit, DoCheck, AfterContentIn
   /*** Look below this guy */
 
   changeButtonColor() {
-    this.treeColor = prompt('Enter a new color');
+    this.treeOptions.color = prompt('Enter a new color');
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.treeColor = this.parentTreeColor;
+    this.treeOptions.color = this.parentTreeOptions.color;
 
     // IGNORE BELOW
     this.ngOnChangesStuffYouShouldIgnoreSeriouslyDontLook(changes);

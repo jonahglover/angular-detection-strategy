@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeComponent,Tree } from './../tree/tree.component';
+import { TreeComponent,Tree, TreeOptions } from './../tree/tree.component';
 import { ControlsComponent } from './../controls/controls.component';
 import { TimeTurnerService } from '../time-turner/time-turner.service';
 import { TreeRegistrarService } from '../tree-registrar/tree-registrar.service';
@@ -24,7 +24,9 @@ export class HomeComponent {
   };
 
   /** nothing above this line is important */
-  public treeColor: String = 'red';
+  public rootOptions: TreeOptions = {
+    color: 'red'
+  };
   /** nothing below this line is important */
 
   constructor(
